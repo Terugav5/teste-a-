@@ -51,17 +51,25 @@ def call_gemini_api(prompt: str) -> str:
 
 
 if __name__ == "__main__":
-    # Example usage:
+    # To run this interactive chatbot:
     # 1. Set your API key in your terminal:
     #    export GEMINI_API_KEY="YOUR_API_KEY_HERE"
-    #
     # 2. Run the script:
     #    python gemini_agent.py
 
-    user_prompt = "Explain how AI works in a few words"
-    print(f"Sending prompt: '{user_prompt}'")
+    print("===== Gemini Chatbot =====")
+    print("Type your message and press Enter. Type 'quit' or 'exit' to end the chat.")
+    print("-" * 28)
 
-    ai_response = call_gemini_api(user_prompt)
+    while True:
+        user_prompt = input("You: ")
+        if user_prompt.lower() in ['quit', 'exit', 'sair']:
+            print("Exiting chatbot. Goodbye!")
+            break
 
-    print("\nAI Response:")
-    print(ai_response)
+        if not user_prompt:
+            continue
+
+        print("AI is thinking...")
+        ai_response = call_gemini_api(user_prompt)
+        print(f"AI: {ai_response}\n")
